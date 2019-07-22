@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,32 +10,25 @@ import * as Speech from 'expo-speech';
 
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      name: '...'
-    }
-  }
+export default function HomeScreen() {
+  let [name, setName] = useState('...');
 
   speak = () => {
-    Speech.speak(this.state.name);
+    Speech.speak(name);
   }
 
   onNameChange = (name) => {
-    console.log(this.state.name)
-    this.setState({name});
+    console.log(name)
+    setName(name);
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button title="Press to hear some words" onPress={this.speak} />
-        <Text style={styles.name}>Hello, {this.state.name} </Text>
-        <TextInput value={this.state.name} style={styles.inputField} onChangeText={this.onNameChange} />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <Button title="Press to hear some words" onPress={speak} />
+      <Text style={styles.name}>Hello, {name} </Text>
+      <TextInput value={name} style={styles.inputField} onChangeText={onNameChange} />
+    </View>
+  );
 }
 
 HomeScreen.navigationOptions = {
