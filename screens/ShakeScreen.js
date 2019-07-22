@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
 import * as Speech from 'expo-speech';
+import { NameContext } from "../context/nameContext";
 
 export default class ShakeScreen extends React.Component {
   constructor(props){
@@ -9,9 +10,10 @@ export default class ShakeScreen extends React.Component {
 
     }
   }
+  static contextType = NameContext;
 
   speak = ()=> {
-    var thingToSay = 'Hello, person passed to me from context, how are you?';
+    var thingToSay = `Hello ${this.context.name}, how are you?`;
     Speech.speak(thingToSay);
   }
 
@@ -29,17 +31,16 @@ export default class ShakeScreen extends React.Component {
         * we just wanted to provide you with some helpful links.
         */}
         {/* <ExpoLinksView /> */}
-        <Text style={styles.bodyText}>Hello, INSERT NAME FROM CONTEXT, you are on the ShakeScreen</Text>
-        <Button onPress ={this.speak} title="Press Me Yo!" />
+        <View style={{width: 50, height: 100, backgroundColor: '#444'}} />
+        <Text style={styles.bodyText}>Hello, {this.context.name}, you are on the ShakeScreen</Text>
+        <View style={{width: 50, height: 50, backgroundColor: '#444'}} />
+        <View style={styles.buttonStyle}>
+        <Button onPress ={this.speak} title="Press Me Yo!" color="black" />
+        </View>
       </ScrollView>
     );
   }
 }
-
-
-
-
-
 
 
 ShakeScreen.navigationOptions = {
@@ -63,6 +64,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
   },
+  buttonStyle: {
+    width: 150,
+    backgroundColor: 'white',
+    alignSelf: "center"
+  }
 });
 
 {/* <View style={{flex: 1, flexDirection: 'column'}}>
