@@ -4,6 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+import GeoScreen from '../screens/GeoScreen';
 import ShakeScreen from '../screens/ShakeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -51,6 +52,22 @@ ShakeStack.navigationOptions = {
 
 ShakeStack.path = '';
 
+const GeoStack = createStackNavigator(
+  {
+    Geo: GeoScreen,
+  },
+  config
+);
+
+GeoStack.navigationOptions = {
+  tabBarLabel: 'Geo',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-globe' : 'md-globe'} />
+  ),
+};
+
+GeoStack.path = '';
+
 const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
@@ -69,6 +86,7 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
+  GeoStack,
   ShakeStack,
   SettingsStack,
 });
