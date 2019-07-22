@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
 import * as Speech from 'expo-speech';
+import RNShake from 'react-native-shake';
 
 export default class ShakeScreen extends React.Component {
   constructor(props){
@@ -19,6 +20,16 @@ export default class ShakeScreen extends React.Component {
     this.speak();
   }
 
+  componentWillMount() {
+    RNShake.addEventListener('ShakeEvent', () => {
+      this.speak();
+    });
+  }
+  
+  componentWillUnmount() {
+    RNShake.removeEventListener('ShakeEvent');
+  }
+
 
 
   render() { 
@@ -30,16 +41,11 @@ export default class ShakeScreen extends React.Component {
         */}
         {/* <ExpoLinksView /> */}
         <Text style={styles.bodyText}>Hello, INSERT NAME FROM CONTEXT, you are on the ShakeScreen</Text>
-        <Button onPress ={this.speak} title="Press Me Yo!" />
+        <Button style={styles.buttonStyle} onPress ={this.speak} title="Press Me Yo!" />
       </ScrollView>
     );
   }
 }
-
-
-
-
-
 
 
 ShakeScreen.navigationOptions = {
@@ -63,6 +69,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
   },
+
+  buttonStyle: {
+    color: '#444',
+    backgroundColor: 'gray'
+  }
 });
 
 {/* <View style={{flex: 1, flexDirection: 'column'}}>
