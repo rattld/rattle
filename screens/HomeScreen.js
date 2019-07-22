@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,11 +7,12 @@ import {
   TextInput,
 } from 'react-native';
 import * as Speech from 'expo-speech';
-
 import { MonoText } from '../components/StyledText';
+import { NameContext } from "../context/nameContext";
 
 export default function HomeScreen() {
   let [name, setName] = useState('...');
+  let context = useContext(NameContext);
 
   speak = () => {
     Speech.speak(name);
@@ -26,6 +27,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <Button title="Press to hear some words" onPress={speak} />
       <Text style={styles.name}>Hello, {name} </Text>
+      <Text style={styles.name}>Hello, {context.name} </Text>
       <TextInput value={name} style={styles.inputField} onChangeText={onNameChange} />
     </View>
   );
