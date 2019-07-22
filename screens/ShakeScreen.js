@@ -17,8 +17,12 @@ export default function ShakeScreen() {
 
   return (
     <ScrollView style={styles.container}>
+      <View style={{width: 50, height: 100, backgroundColor: '#444'}} />
       <Text style={styles.bodyText}>Hello, {context.name}, you are on the ShakeScreen</Text>
-      <Button onPress ={this.speak} title="Press Me Yo!" />
+      <View style={{width: 50, height: 50, backgroundColor: '#444'}} />
+      <View style={styles.buttonStyle}>
+        <Button onPress ={speak} title="Press Me Yo!" color="black" />
+      </View>
     </ScrollView>
   );
 }
@@ -44,4 +48,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
   },
+  buttonStyle: {
+    width: 150,
+    backgroundColor: 'white',
+    alignSelf: "center"
+  }
 });
