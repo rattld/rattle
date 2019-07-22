@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,24 +11,17 @@ import { MonoText } from '../components/StyledText';
 import { NameContext } from "../context/nameContext";
 
 export default function HomeScreen() {
-  let [name, setName] = useState('...');
   let context = useContext(NameContext);
 
   speak = () => {
-    Speech.speak(name);
-  }
-
-  onNameChange = (name) => {
-    console.log(name)
-    setName(name);
+    Speech.speak(context.name);
   }
 
   return (
     <View style={styles.container}>
       <Button title="Press to hear some words" onPress={speak} />
-      <Text style={styles.name}>Hello, {name} </Text>
       <Text style={styles.name}>Hello, {context.name} </Text>
-      <TextInput value={name} style={styles.inputField} onChangeText={onNameChange} />
+      <TextInput value={context.name} style={styles.inputField} onChangeText={context.updateName} />
     </View>
   );
 }
