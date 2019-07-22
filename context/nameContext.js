@@ -7,7 +7,12 @@ class NameProvider extends React.Component {
     super(props);
     this.state = {
       name: 'blarp',
+      updateName: this.updateName,
     };
+  }
+
+  updateName = (name) => {
+    this.setState({name});
   }
 
   render() {
