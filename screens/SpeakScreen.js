@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
 import * as Speech from 'expo-speech';
+import Header from '../components/Header';
 
 import { NameContext } from '../context/nameContext';
 
-export default function ShakeScreen() {
+export default function SpeakScreen() {
   
   let context = useContext(NameContext);
 
@@ -16,19 +17,23 @@ export default function ShakeScreen() {
   useEffect(() => this.speak(), []);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      <View><Header /></View>
+
       <View style={{width: 50, height: 100, backgroundColor: '#444'}} />
-      <Text style={styles.bodyText}>Hello {context.name}, you are on the ShakeScreen</Text>
+        <Text style={styles.bodyText}>Hello {context.name}, you are on the SpeakScreen</Text>
       <View style={{width: 50, height: 50, backgroundColor: '#444'}} />
+
       <View style={styles.buttonStyle}>
         <Button onPress ={speak} title="Press Me Yo!" color="black" />
       </View>
-    </ScrollView>
+
+    </View>
   );
 }
 
-ShakeScreen.navigationOptions = {
-  title: 'Shakes',
+SpeakScreen.navigationOptions = {
+  title: 'Speaks',
 };
 
 const styles = StyleSheet.create({

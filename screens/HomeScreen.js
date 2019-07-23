@@ -7,12 +7,14 @@ import {
   TextInput,
 } from 'react-native';
 import { NameContext } from "../context/nameContext";
+import Header from '../components/Header';
 
 export default function HomeScreen() {
   let context = useContext(NameContext);
 
   return (
     <View style={styles.container}>
+      <View><Header /></View>
       <Text style={styles.greeting}>Hello, {context.name} </Text>
       <TextInput value={context.name} style={styles.inputField} onChangeText={context.updateName} />
     </View>
@@ -42,7 +44,8 @@ const styles = StyleSheet.create({
     width: 350,
     marginTop: 30,
     marginBottom: 100,
-    paddingLeft: 5,
+    // paddingLeft: 5,
+    padding: 15,
     borderColor: '#f12',
     borderWidth: 1,
     color: '#19f'

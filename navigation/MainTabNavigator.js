@@ -5,7 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import GeoScreen from '../screens/GeoScreen';
-import ShakeScreen from '../screens/ShakeScreen';
+import SpeakScreen from '../screens/SpeakScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const config = Platform.select({
@@ -36,21 +36,21 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const ShakeStack = createStackNavigator(
+const SpeakStack = createStackNavigator(
   {
-    Shakes: ShakeScreen, 
+    Speaks: SpeakScreen, 
   },
   config
 );
 
-ShakeStack.navigationOptions = {
-  tabBarLabel: 'Shakes',
+SpeakStack.navigationOptions = {
+  tabBarLabel: 'Speaks',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-megaphone' : 'md-megaphone'} />
   ),
 };
 
-ShakeStack.path = '';
+SpeakStack.path = '';
 
 const GeoStack = createStackNavigator(
   {
@@ -87,7 +87,7 @@ SettingsStack.path = '';
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   GeoStack,
-  ShakeStack,
+  SpeakStack,
   SettingsStack,
 });
 
