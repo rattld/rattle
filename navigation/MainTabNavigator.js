@@ -85,11 +85,12 @@ SettingsStack.navigationOptions = {
 SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  GeoStack,
-  SpeakStack,
-  SettingsStack,
-});
+    HomeStack,
+    GeoStack,
+    SpeakStack,
+    SettingsStack,
+  }
+);
 
 tabNavigator.path = '';
 
