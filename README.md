@@ -1,7 +1,7 @@
 # Rattld
 
 ## Description
-### [project description]
+##### A React Native app built with the help of Expo. This app takes your name as input and greets you with your geo-location. When you're ready, it will randomly generate a phrase and sweetly play it back to you, along with your name. 
 
 ## Authors:
 #### [Adam DuQuette](https://github.com/DukeOfEtiquette)
@@ -9,7 +9,7 @@
 #### [Nathaniel Pierce](https://github.com/natkiypie)
 
 ## Links and Resources
-#### [PR Request]
+#### https://github.com/rattld/rattle
 
 ## Documentation
 #### [Project documentation]
@@ -38,7 +38,8 @@ Usage Notes or examples
 Usage Notes or examples
 
 ## Setup
-...
+
+
 
 ## Running the app
 ...
@@ -51,8 +52,19 @@ Usage Notes or examples
 ## UML
 Link to an image of the UML for your application and response to events
 
+[Home Screen](./assets/uml_images/img_6239.jpg)
+
+[Geo Screen](./assets/uml_images/img_6240.jpg)
+
+[Speak Screen](./assets/uml_images/img_6241.jpg)
+
 ## Objectives: 
-[Learning Objectives]
+* Learn React Native by:
+  * Developing an application
+  * Using Expo SDK 
+  * Using onboard sensors
+  * Responding to onboard sensors
+
 
 ## Details & Instructions:
 [Instructions]
