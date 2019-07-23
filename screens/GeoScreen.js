@@ -8,11 +8,13 @@ import {
 
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import Navigation from '../constants/Navigation';
-import GeoDetail from '../components/GeoDetail';
 
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import Navigation from '../constants/Navigation';
+
+import ScreenContainer from '../components/ScreenContainer';
+import GeoDetail from '../components/GeoDetail';
 
 export default function GeoScreen() {
   let [location, setLocation] = useState({});
@@ -35,8 +37,7 @@ export default function GeoScreen() {
 
   let okToRender = location.timestamp && location.coords;
   return (
-    <View style={styles.container}>
-
+    <ScreenContainer>
       <View style={styles.geoDetails}>
         {!okToRender && (
           <>
@@ -57,19 +58,13 @@ export default function GeoScreen() {
       <View style={styles.butt}>
         <Button title="Update" onPress={_getLocationAsync} />
       </View>
-
-    </View>
+    </ScreenContainer>
   );
 }
 
 GeoScreen.navigationOptions = Navigation;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: Colors.backgroundColor,
-  },
   geoDetails: {
     marginTop: 50,
     flex: 2,

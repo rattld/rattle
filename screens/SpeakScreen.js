@@ -2,11 +2,13 @@ import React, { useContext, useEffect} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import * as Speech from 'expo-speech';
 
-import { NameContext } from '../context/nameContext';
 import Navigation from '../constants/Navigation';
-
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+
+import { NameContext } from '../context/nameContext';
+
+import ScreenContainer from '../components/ScreenContainer';
 
 export default function SpeakScreen() {
   let context = useContext(NameContext);
@@ -29,8 +31,7 @@ export default function SpeakScreen() {
   handlePress = () => this.speak();
 
   return (
-    <View style={styles.container}>
-
+    <ScreenContainer>
       <View style={styles.greeting}>
         <Text style={styles.bodyText}>{messages[0]}</Text>
       </View >
@@ -38,19 +39,13 @@ export default function SpeakScreen() {
       <View style={styles.butt}>
         <Button onPress ={handlePress} title="Press Me Yo!" />
       </View>
-
-    </View>
+    </ScreenContainer>
   );
 }
 
 SpeakScreen.navigationOptions = Navigation;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: Colors.backgroundColor,
-  },
   greeting: {
     marginTop: 50,
     flex: 2,

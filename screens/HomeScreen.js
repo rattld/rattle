@@ -5,18 +5,20 @@ import {
   View,
   TextInput,
 } from 'react-native';
-import { NameContext } from "../context/nameContext";
 
 import Navigation from '../constants/Navigation';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 
+import { NameContext } from "../context/nameContext";
+
+import ScreenContainer from '../components/ScreenContainer';
+
 export default function HomeScreen() {
   let context = useContext(NameContext);
 
   return (
-      <View style={styles.container}>
-
+      <ScreenContainer>
         <View style={styles.greeting}>
           <Text style={styles.message}>Hello, {context.name} </Text>
         </View>
@@ -24,20 +26,13 @@ export default function HomeScreen() {
         <View style={styles.form}>
           <TextInput style={styles.inputField} value={context.name} onChangeText={context.updateName} />
         </View>
-
-      </View>
+      </ScreenContainer>
   );
 }
 
 HomeScreen.navigationOptions = Navigation;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.backgroundColor,
-  },
   greeting: {
     marginTop: 50,
     flex: 1,
