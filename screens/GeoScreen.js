@@ -8,7 +8,7 @@ import {
 
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import Header from '../components/Header';
+import Navigation from '../constants/Navigation';
 import GeoDetail from '../components/GeoDetail';
 
 import Colors from '../constants/Colors';
@@ -36,7 +36,6 @@ export default function GeoScreen() {
   let okToRender = location.timestamp && location.coords;
   return (
     <View style={styles.container}>
-      <Header />
 
       <View style={styles.geoDetails}>
         {!okToRender && (
@@ -63,9 +62,7 @@ export default function GeoScreen() {
   );
 }
 
-GeoScreen.navigationOptions = {
-  header: null,
-};
+GeoScreen.navigationOptions = Navigation;
 
 const styles = StyleSheet.create({
   container: {

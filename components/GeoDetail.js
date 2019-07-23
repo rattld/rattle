@@ -10,7 +10,7 @@ export default function GeoDetail(props) {
 
 const styles = StyleSheet.create({
   title: {
-    color: Colors.primaryBlue,
+    color: Colors.white,
     fontWeight: 'bold'
   },
   detail: {

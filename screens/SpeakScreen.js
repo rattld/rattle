@@ -1,61 +1,69 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
+import React, { useContext, useEffect} from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import * as Speech from 'expo-speech';
-import Header from '../components/Header';
 
 import { NameContext } from '../context/nameContext';
+import Navigation from '../constants/Navigation';
+
+import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
 
 export default function SpeakScreen() {
-  
   let context = useContext(NameContext);
+  let messages = [
+    `Hello ${context.name}, how are you?`,
+    `Are you serious?!`
+  ]
 
-  speak = ()=> {
-    let message = `Hello ${context.name}, how are you?`;
+  getRandomMessage = () =>  messages[Math.floor(Math.random() * messages.length)]
+
+  speak = (msg) => {
+    let message = '';
+
+    if(!msg) message = getRandomMessage();
+    else message = msg;
     Speech.speak(message);
   }
 
-  useEffect(() => this.speak(), []);
+  useEffect(() => this.speak(messages[0]), []);
+  handlePress = () => this.speak();
 
   return (
     <View style={styles.container}>
-      <View><Header /></View>
 
-      <View style={{width: 50, height: 100, backgroundColor: '#444'}} />
-        <Text style={styles.bodyText}>Hello {context.name}, you are on the SpeakScreen</Text>
-      <View style={{width: 50, height: 50, backgroundColor: '#444'}} />
+      <View style={styles.greeting}>
+        <Text style={styles.bodyText}>{messages[0]}</Text>
+      </View >
 
-      <View style={styles.buttonStyle}>
-        <Button onPress ={speak} title="Press Me Yo!" color="black" />
+      <View style={styles.butt}>
+        <Button onPress ={handlePress} title="Press Me Yo!" />
       </View>
 
     </View>
   );
 }
 
-SpeakScreen.navigationOptions = {
-  title: 'Speaks',
-};
+SpeakScreen.navigationOptions = Navigation;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    paddingTop: 15,
-    backgroundColor: '#444',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 30,
+    justifyContent: 'center',
+    backgroundColor: Colors.backgroundColor,
+  },
+  greeting: {
+    marginTop: 50,
+    flex: 2,
+  },
+  butt: {
+    padding: 3,
+    width: Layout.window.width,
+    flex: 3,
   },
   bodyText: {
-    color: 'white',
+    color: Colors.white,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 55,
     textAlign: "center",
-    textAlignVertical: "center",
   },
-  buttonStyle: {
-    width: 150,
-    backgroundColor: 'white',
-    alignSelf: "center"
-  }
 });
