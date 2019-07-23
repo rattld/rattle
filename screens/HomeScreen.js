@@ -6,21 +6,14 @@ import {
   Button,
   TextInput,
 } from 'react-native';
-import * as Speech from 'expo-speech';
-import { MonoText } from '../components/StyledText';
 import { NameContext } from "../context/nameContext";
 
 export default function HomeScreen() {
   let context = useContext(NameContext);
 
-  speak = () => {
-    Speech.speak(context.name);
-  }
-
   return (
     <View style={styles.container}>
-      <Button title="Press to hear some words" onPress={speak} />
-      <Text style={styles.name}>Hello, {context.name} </Text>
+      <Text style={styles.greeting}>Hello, {context.name} </Text>
       <TextInput value={context.name} style={styles.inputField} onChangeText={context.updateName} />
     </View>
   );
@@ -34,18 +27,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'column',
     backgroundColor: '#ccc',
     padding: 8,
   },
-  name: {
-    fontSize: 30,
+  greeting: {
+    fontSize: 55,
     color: '#19f',
   },
   inputField: {
+    fontSize: 30,
     height: 40,
-    borderColor: 'red',
+    width: 350,
+    marginTop: 30,
+    marginBottom: 100,
+    paddingLeft: 5,
+    borderColor: '#f12',
     borderWidth: 1,
-    color: '#999'
+    color: '#19f'
   }
 });
