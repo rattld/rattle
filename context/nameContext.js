@@ -6,7 +6,7 @@ class NameProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'blarp',
+      name: 'Nathaniel',
       updateName: this.updateName,
     };
   }
