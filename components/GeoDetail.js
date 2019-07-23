@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
+import Colors from '../constants/Colors';
 
 export default function GeoDetail(props) {
   return (
@@ -9,6 +10,7 @@ export default function GeoDetail(props) {
 
 const styles = StyleSheet.create({
   title: {
+    color: Colors.primaryBlue,
     fontWeight: 'bold'
   },
   detail: {

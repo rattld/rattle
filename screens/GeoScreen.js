@@ -8,13 +8,17 @@ import {
 
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import Header from '../components/Header';
 import GeoDetail from '../components/GeoDetail';
+
+import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
 
 export default function GeoScreen() {
   let [location, setLocation] = useState({});
 
   _getLocationAsync = async () => {
-    // Show retrieving message
+    // Show loading message
     setLocation({});
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     let location = await Location.getCurrentPositionAsync({});
@@ -32,7 +36,7 @@ export default function GeoScreen() {
   let okToRender = location.timestamp && location.coords;
   return (
     <View style={styles.container}>
-      <View style={styles.header}><Text>Rattld</Text></View>
+      <Header />
 
       <View style={styles.geoDetails}>
         {!okToRender && (
@@ -66,17 +70,17 @@ GeoScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
-    backgroundColor: '#ccc',
-    padding: 10,
-  },
-  header: {
-    flex: 3
+    justifyContent: 'center',
+    backgroundColor: Colors.backgroundColor,
   },
   geoDetails: {
-    flex: 4,
+    marginTop: 50,
+    flex: 2,
+    paddingLeft: 5
   },
   butt: {
-    flex: 5
+    padding: 3,
+    width: Layout.window.width,
+    flex: 3
   }
 });

@@ -3,20 +3,30 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TextInput,
 } from 'react-native';
 import { NameContext } from "../context/nameContext";
 import Header from '../components/Header';
+
+import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
 
 export default function HomeScreen() {
   let context = useContext(NameContext);
 
   return (
     <View style={styles.container}>
-      <View><Header /></View>
-      <Text style={styles.greeting}>Hello, {context.name} </Text>
-      <TextInput value={context.name} style={styles.inputField} onChangeText={context.updateName} />
+
+      <Header />
+
+      <View style={styles.greeting}>
+        <Text style={styles.message}>Hello, {context.name} </Text>
+      </View>
+
+      <View style={styles.form}>
+        <TextInput style={styles.inputField} value={context.name} onChangeText={context.updateName} />
+      </View>
+
     </View>
   );
 }
@@ -30,24 +40,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column',
-    backgroundColor: '#ccc',
-    padding: 8,
+    backgroundColor: Colors.backgroundColor,
   },
   greeting: {
+    marginTop: 50,
+    flex: 1,
+  },
+  form: {
+    flex: 4,
+    width: Layout.window.width,
+    marginTop: 10,
+    padding: 5
+  },
+  message: {
     fontSize: 55,
-    color: '#19f',
+    color: Colors.primaryBlue,
   },
   inputField: {
     fontSize: 30,
     height: 40,
-    width: 350,
-    marginTop: 30,
-    marginBottom: 100,
-    // paddingLeft: 5,
-    padding: 15,
-    borderColor: '#f12',
+    paddingLeft: 7,
+    color: Colors.primaryBlue,
+    borderColor: Colors.primaryRed,
     borderWidth: 1,
-    color: '#19f'
   }
 });
