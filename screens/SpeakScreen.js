@@ -1,10 +1,11 @@
-import React, { useContext, useEffect} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import * as Speech from 'expo-speech';
 
 import Navigation from '../constants/Navigation';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import { DeviceMotion } from 'expo-sensors';
 
 import { NameContext } from '../context/nameContext';
 
@@ -12,6 +13,12 @@ import ScreenContainer from '../components/ScreenContainer';
 
 export default function SpeakScreen() {
   let context = useContext(NameContext);
+  const [dm, setDM] = useState(null);
+  let accelArray = [999];
+  let words = 'first';
+  
+  words = dm? accelArray: 'nothing';
+
   let messages = [
     `Hello ${context.name}, how are you?`,
     `Are you serious?!`
@@ -28,7 +35,18 @@ export default function SpeakScreen() {
   }
 
   useEffect(() => this.speak(messages[0]), []);
+  useEffect(() => {
+    DeviceMotion.addListener( motion => {
+      
+      if(motion.acceleration.y>2 || motion.acceleration.z>2 || motion.acceleration.x>2){ 
+        let accel = `X: ${motion.acceleration.x} Y: ${motion.acceleration.y} Z: ${motion.acceleration.z}`
+        setDM(accel);
+        this.speak('Hey what the hell, stop shaking me!'),[];
+      }
+    });
+  },[]);
   handlePress = () => this.speak();
+
 
   return (
     <ScreenContainer>
@@ -39,6 +57,7 @@ export default function SpeakScreen() {
       <View style={styles.butt}>
         <Button onPress ={handlePress} title="Press Me Yo!" />
       </View>
+      <Text>{dm}</Text>
     </ScreenContainer>
   );
 }
