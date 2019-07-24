@@ -14,14 +14,16 @@ import ScreenContainer from '../components/ScreenContainer';
 export default function SpeakScreen() {
   let context = useContext(NameContext);
   const [dm, setDM] = useState(null);
-  let accelArray = [999];
-  let words = 'first';
   
-  words = dm? accelArray: 'nothing';
-
   let messages = [
     `Hello ${context.name}, how are you?`,
-    `Are you serious?!`
+    `Are you serious?!`,
+    `${context.name}, please try something else`,
+    `What can I help you with sweetie`,
+    `Yeah, I get it ${context.name}, you da man..., or woman`,
+    `Why are you doing this to me, haven't I been good to you ${context.name}?`,
+    `Alright ${context.name}, press me again and I'll beat you with a half eaten peperoni stick`,
+    `Okay, I know you live a lonely life and have no one to talk to. Here's some advice, don't accept any wooden nickels from no one, yo`
   ]
 
   getRandomMessage = () =>  messages[Math.floor(Math.random() * messages.length)]
@@ -36,17 +38,20 @@ export default function SpeakScreen() {
 
   useEffect(() => this.speak(messages[0]), []);
   useEffect(() => {
+    DeviceMotion.setUpdateInterval(300);
     DeviceMotion.addListener( motion => {
       
-      if(motion.acceleration.y>2 || motion.acceleration.z>2 || motion.acceleration.x>2){ 
+      if(motion.acceleration.y>3 || motion.acceleration.z>4 || motion.acceleration.x>2){ 
         let accel = `X: ${motion.acceleration.x} Y: ${motion.acceleration.y} Z: ${motion.acceleration.z}`
         setDM(accel);
-        this.speak('Hey what the hell, stop shaking me!'),[];
+        this.speak(`Hey what the hell, stop shaking me!`);
       }
+
     });
   },[]);
-  handlePress = () => this.speak();
 
+
+  handlePress = () => this.speak();
 
   return (
     <ScreenContainer>
