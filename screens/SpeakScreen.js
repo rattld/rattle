@@ -19,7 +19,6 @@ export default function SpeakScreen() {
     `Hello ${context.name}, how are you?`,
     `Are you serious?!`,
     `${context.name}, please try something else`,
-    `What can I help you with sweetie`,
     `Yeah, I get it ${context.name}, you da man..., or woman`,
     `Why are you doing this to me, haven't I been good to you ${context.name}?`,
     `Alright ${context.name}, press me again and I'll beat you with a half eaten peperoni stick`,
